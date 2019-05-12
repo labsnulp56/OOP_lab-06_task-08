@@ -1,4 +1,4 @@
-#include <iostream>
+п»ї#include <iostream>
 #include <cstdlib>
 
 using namespace std;
@@ -18,8 +18,8 @@ template<class AType, int size> AType &atype<AType, size>::operator[](int i)
 {
 	if (i < 0 || i > size - 1)
 	{
-		cout << "\n Значення індексу ";
-		cout << i << "виходить за межі допустимого діапазону. \n";
+		cout << "\n Р—РЅР°С‡РµРЅРЅСЏ С–РЅРґРµРєСЃСѓ ";
+		cout << i << "РІРёС…РѕРґРёС‚СЊ Р·Р° РјРµР¶С– РґРѕРїСѓСЃС‚РёРјРѕРіРѕ РґС–Р°РїР°Р·РѕРЅСѓ. \n";
 		exit(1);
 	}
 	return a[i];
@@ -63,22 +63,22 @@ template<class AType> void sort(AType* m, int n)
 int main()
 {
 	system("chcp 1251>nul");
-	// Цілочисельний масив
+	// Р¦С–Р»РѕС‡РёСЃРµР»СЊРЅРёР№ РјР°СЃРёРІ
 	atype<int, 5> intarray;
 	int temp_int = 0;
 	for (int i = 0; i < 5; i++) {
-		cout << " \n Введіть елемент масиву №" << i;
+		cout << " \n Р’РІРµРґС–С‚СЊ РµР»РµРјРµРЅС‚ РјР°СЃРёРІСѓ в„–" << i;
 		cin >> temp_int;
 		intarray[i] = temp_int;
 	}
-	// Символьний масив
+	// РЎРёРјРІРѕР»СЊРЅРёР№ РјР°СЃРёРІ
 	char B[7] = { 'Z', 'B', 'Y', 'A', 'D', 'C', 'X' };
-	//сортування масивів 
+	//СЃРѕСЂС‚СѓРІР°РЅРЅСЏ РјР°СЃРёРІС–РІ 
 //	sort(intarray, 5);
 //	sort(B, 7);
 	int x = 3;
 	int result = binarySearch(intarray, 0, 4, x);
 	cout << "\n result = " << result << endl;
-	system("pause>nul");
+	system("pause>nul"); 
 	return 0;
 }
