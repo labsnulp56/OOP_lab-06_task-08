@@ -78,20 +78,34 @@ int main()
 {
 	system("chcp 1251");
 	OrderedArray<int>intob(4, 0);
+	OrderedArray<double>doubleob(4, 0);
+	double a = 2.5;
 	for (int i = 0; i < 4; i++)
 	{
-		cout << intob[i] << endl;
+		intob[i] = i;
 	}
-	cout << "Заповніть масив \n";
+
+	cout << "Масив int" << endl;
 	for (int i = 0; i < 4; i++)
 	{
-		cin >> intob[i];
+		cout << intob[i] << " ";
 	}
-	cout << "Введений масив \n";
+	
+	cout << "\nМасив double" << endl;
+
 	for (int i = 0; i < 4; i++)
 	{
-		cout << intob[i] << endl;
+		doubleob[i] = a;
+		a+=.85;
 	}
+
+	for (int i = 0; i < 4; i++)
+	{
+		cout << doubleob[i] << " ";
+	}
+	cout << "\n";
+
+
 	system("pause");
 	return 0;
 }
