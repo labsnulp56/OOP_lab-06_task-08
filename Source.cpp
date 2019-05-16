@@ -3,82 +3,83 @@
 
 using namespace std;
 
-template<class AType = int, int size = 10> class atype {
-	AType a[size];
+template<typename T> class OrderedArray 
+{
+private: 
+	int size;
+	T* arr;
+protected:
+	void InitArray(T value);
+	
 public:
-	atype()
-	{
-		register int i;
-		for (i = 0; i < size; i++) a[i] = 0;
-	}
-	AType &operator[] (int i);
+	OrderedArray(int size, T value);
+	~OrderedArray();
+	T &operator [](int i);
+	int BinarySearch(T* m, int l, int r, int x);
 };
 
-template<class AType, int size> AType &atype<AType, size>::operator[](int i)
+template<typename T> T & OrderedArray <T>::operator[](int i)
 {
-	if (i < 0 || i > size - 1)
+	if (i < 0 || i > this->size - 1)
 	{
-		cout << "\n Значення індексу ";
-		cout << i << "виходить за межі допустимого діапазону. \n";
-		exit(1);
+		throw("Індекс виходить за межі масиву \n");
+		
 	}
-	return a[i];
-	}
-
-template<class AType> void show(AType* m, int n)
-{
-	for (int i = 0; i < n; i++) cout << m[i] << " ";
-	cout << endl;
+	return arr[i];
 }
 
-template<class AType> AType binarySearch(AType* m, int l, int r, int x)
+template<typename T> OrderedArray<T>::OrderedArray(int size, T value)
 {
-	if (r >= l) {
+	this->size = size;
+	this->arr = new T[this->size];
+	this->InitArray(value);
+}
+
+template<typename T> OrderedArray<T>::~OrderedArray()
+{
+	delete[] this->arr;
+}
+
+template<typename T> void OrderedArray<T>::InitArray(T value)
+{
+	for (int i = 0; i < this->size; i++)
+	{
+		this->arr[i] = value;
+	}
+}
+
+template<typename T>
+int OrderedArray<T>::BinarySearch(T * m, int l, int r, int x)
+{
+	if (r >= l)
+	{
 		int mid = l + (r - l) / 2;
-		if (m[mid] == x)
+		if (arr[mid] == x)
+		{
 			return mid;
-		if (m[mid] > x)
-			return binarySearch(m, l, mid - 1, x);
-		return binarySearch(m, mid + 1, r, x);
+		}
+		if (arr[mid] > x)
+		{
+			return BinarySearch(this->arr, l, mid - 1, x);
+		}
+		return BinarySearch(this->arr, mid + 1, r, x);
 	}
 	return -1;
 }
 
-template<class AType> void sort(AType* m, int n)
-{
-	show(m, n);
-	AType s;
-	for (int i = 1; i <= n - 1; i++) {
-		for (int j = 0; j < n - 1; j++) {
-			if (m[j] > m[j + 1]) {
-				s = m[j + 1];
-				m[j + 1] = m[j];
-				m[j] = s;
-			}
-		}
-	}
-	show(m, n);
-}
-
 int main()
 {
-	system("chcp 1251>nul");
-	// Цілочисельний масив
-	atype<int, 5> intarray;
-	int temp_int = 0;
-	for (int i = 0; i < 5; i++) {
-		cout << " \n Введіть елемент масиву №" << i;
-		cin >> temp_int;
-		intarray[i] = temp_int;
+	system("chcp 1251");
+	OrderedArray<int> intob(10, 0);
+	for (int i = 0; i < 10; i++)
+	{
+		cout << intob[i] << endl;
 	}
-	// Символьний масив
-	char B[7] = { 'Z', 'B', 'Y', 'A', 'D', 'C', 'X' };
-	//сортування масивів 
-//	sort(intarray, 5);
-//	sort(B, 7);
-	int x = 3;
-	int result = binarySearch(intarray, 0, 4, x);
-	cout << "\n result = " << result << endl;
-	system("pause>nul"); 
+	for (int i = 0; i < 10; i++)
+	{
+		cin >> intob[i];
+	}
+	
+	system("pause"); 
 	return 0;
 }
