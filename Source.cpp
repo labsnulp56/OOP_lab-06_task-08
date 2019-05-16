@@ -10,12 +10,12 @@ private:
 	T* arr;
 protected:
 	void InitArray(T value);
-	
+	int OrderedArray<T>::BinarySearch(T* m, int l, int r, int x);
 public:
 	OrderedArray(int size, T value);
 	~OrderedArray();
 	T &operator [](int i);
-	int BinarySearch(T* m, int l, int r, int x);
+	int OrderedArray<T>::Search(T* m, int x);
 };
 
 template<typename T> T & OrderedArray <T>::operator[](int i)
@@ -23,9 +23,15 @@ template<typename T> T & OrderedArray <T>::operator[](int i)
 	if (i < 0 || i > this->size - 1)
 	{
 		throw("Індекс виходить за межі масиву \n");
-		
+
 	}
 	return arr[i];
+}
+
+template<typename T>
+int OrderedArray<T>::Search(T * m, int x)
+{
+	return BinarySearch(m, 0, this->size, x);
 }
 
 template<typename T> OrderedArray<T>::OrderedArray(int size, T value)
@@ -44,12 +50,13 @@ template<typename T> void OrderedArray<T>::InitArray(T value)
 {
 	for (int i = 0; i < this->size; i++)
 	{
-		this->arr[i] = value;
+		this->arr[i] = 0; 
+		//this->arr[i] = 0; тестував функцію BinarySearch, вона працює
 	}
+	//cout << Search(arr, 2) << endl;
 }
 
-template<typename T>
-int OrderedArray<T>::BinarySearch(T * m, int l, int r, int x)
+template<typename T> int OrderedArray<T>::BinarySearch(T *m, int l, int r, int x)
 {
 	if (r >= l)
 	{
@@ -70,16 +77,21 @@ int OrderedArray<T>::BinarySearch(T * m, int l, int r, int x)
 int main()
 {
 	system("chcp 1251");
-	OrderedArray<int> intob(10, 0);
-	for (int i = 0; i < 10; i++)
+	OrderedArray<int>intob(4, 0);
+	for (int i = 0; i < 4; i++)
 	{
 		cout << intob[i] << endl;
 	}
-	for (int i = 0; i < 10; i++)
+	cout << "Заповніть масив \n";
+	for (int i = 0; i < 4; i++)
 	{
 		cin >> intob[i];
 	}
-	
-	system("pause"); 
+	cout << "Введений масив \n";
+	for (int i = 0; i < 4; i++)
+	{
+		cout << intob[i] << endl;
+	}
+	system("pause");
 	return 0;
 }
