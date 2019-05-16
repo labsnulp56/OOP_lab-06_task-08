@@ -43,17 +43,16 @@ template<typename T> OrderedArray<T>::OrderedArray(int size, T value)
 
 template<typename T> OrderedArray<T>::~OrderedArray()
 {
-	delete[] this->arr;
+	delete[]arr;
 }
 
 template<typename T> void OrderedArray<T>::InitArray(T value)
 {
 	for (int i = 0; i < this->size; i++)
 	{
-		this->arr[i] = 0; 
-		//this->arr[i] = 0; тестував функцію BinarySearch, вона працює
+		this->arr[i] = i; 
 	}
-	//cout << Search(arr, 2) << endl;
+	cout << "Знаходимо індекс числа 2 = " << Search(arr, 2) << endl;
 }
 
 template<typename T> int OrderedArray<T>::BinarySearch(T *m, int l, int r, int x)
@@ -80,10 +79,6 @@ int main()
 	OrderedArray<int>intob(4, 0);
 	OrderedArray<double>doubleob(4, 0);
 	double a = 2.5;
-	for (int i = 0; i < 4; i++)
-	{
-		intob[i] = i;
-	}
 
 	cout << "Масив int" << endl;
 	for (int i = 0; i < 4; i++)
@@ -104,8 +99,7 @@ int main()
 		cout << doubleob[i] << " ";
 	}
 	cout << "\n";
-
-
 	system("pause");
 	return 0;
+	
 }
